@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "nome": "pane",
+        "descrizione": "",
+        "urlimmagine": "",
+        "quantità": 100,
+        "tipo_prodotto": 0,
+        "prezzo": 0.3
+    },
+    {
+        "id": 1,
+        "nome": "prosciutto cotto",
+        "descrizione": "",
+        "urlimmagine": "",
+        "quantità": 1000,
+        "tipo_prodotto": 1,
+        "prezzo": 0.4
+    },
+    {
+        "id": 2,
+        "nome": "prosciutto crudo",
+        "descrizione": "",
+        "urlimmagine": "",
+        "quantità": 1000,
+        "tipo_prodotto": 1,
+        "prezzo": 0.4
+    },
+    {
+        "id": 3,
+        "nome": "twix",
+        "descrizione": "",
+        "urlimmagine": "",
+        "quantità": 100,
+        "tipo_prodotto": 3,
+        "prezzo": 1
+    }
+]
