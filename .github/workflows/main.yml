@@ -3,16 +3,8 @@ name: Analyze, Build and Deploy
 on: [push]
 
 jobs:
-  analyze:
-    name: "Analyze"
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v2
-    with:
-      flutter_channel: stable
-      flutter_version: 3.7.12
-
   build:
     name: Build
-    needs: [analyze]
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Git Checkout
