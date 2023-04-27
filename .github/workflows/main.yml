@@ -3,10 +3,6 @@ name: Analyze, Build and Deploy
 on: [push]
 
 jobs:
-  semantic-pull-request:
-    name: "Semantic"
-    uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/semantic_pull_request.yml@v1
-
   analyze:
     name: "Analyze"
     uses: VeryGoodOpenSource/very_good_workflows/.github/workflows/flutter_package.yml@v1
@@ -16,7 +12,7 @@ jobs:
 
   build:
     name: Build
-    needs: [semantic-pull-request, analyze]
+    needs: [analyze]
     runs-on: ubuntu-latest
     steps:
       - name: 📚 Git Checkout
