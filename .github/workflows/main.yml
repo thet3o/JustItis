@@ -32,7 +32,7 @@ jobs:
           very_good --analytics false
           very_good packages get --recursive
       - name: 🛠️ Build the application
-        run: flutter build web -t lib/main_production.dart
+        run: flutter build web
       - name: ⬇️ Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
