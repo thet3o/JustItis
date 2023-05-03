@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:justitis/menu.dart';
+import 'package:justitis/networkservice.dart';
 import 'package:justitis/oauth.dart';
 import 'package:justitis/walletscreen.dart';
 
@@ -12,8 +13,12 @@ class HomeScreen extends StatefulWidget{
 
 class HomeScreenState extends State<HomeScreen>{
   final advancedDrawerController = AdvancedDrawerController();
-  double saldo = 10.5;
+  double saldo = 0.0;
   String status = 'Fai il login!';
+
+  void getWallet() async{
+    saldo = await NetworkService.getUserWallet(GoogleOAuth.authentication.accessToken!);
+  }
 
   @override
   void initState() {
@@ -24,6 +29,7 @@ class HomeScreenState extends State<HomeScreen>{
         GoogleOAuth.authentication = await GoogleOAuth.currentUser!.authentication;
         setState(() {
           GoogleOAuth.isLogged = true;
+          getWallet();
         });
       }
     });
@@ -153,11 +159,11 @@ class HomeScreenState extends State<HomeScreen>{
             children: [
               const Spacer(),
               Container(
-                margin: EdgeInsets.all(20),
+                margin: const EdgeInsets.all(20),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 255, 143, 0),
-                    fixedSize: Size(200, 50)
+                    fixedSize: const Size(200, 50)
                   ),
                   onPressed: () {
                     if(!GoogleOAuth.isLogged){

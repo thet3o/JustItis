@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:justitis/models.dart';
+import 'package:http/http.dart' as http;
+import 'package:justitis/networkservice.dart';
 
 class MenuScreen extends StatefulWidget{
   @override
@@ -13,17 +15,16 @@ class MenuScreenState extends State<MenuScreen>{
 
   List<Item> items = [];
 
-  Future loadAsset() async{
-    String jsonString = await rootBundle.loadString('assets/ingredienti.json');
-    final json = jsonDecode(jsonString) as List<dynamic>;
-    setState(() {
-      items = json.map((e) => Item.fromJson(e as Map<String,dynamic>)).toList();
+  void getIngredients() async{
+    final data = await NetworkService.getIngredients();
+    setState((){
+      items = data;
     });
   }
-
+  
   @override
-  void initState() {
-    loadAsset();
+  void initState(){
+    getIngredients();
     super.initState();
   }
 
@@ -44,11 +45,11 @@ class MenuScreenState extends State<MenuScreen>{
         children: [
           ListView.builder(
             shrinkWrap: true,
-              itemCount: items == null ? 0 : items.length,
+              itemCount: items.length,
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(
-                    title: Text(items[index].nome),
+                    title: Text(items[index].nome!),
                   ),
                 );
               },

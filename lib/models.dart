@@ -1,12 +1,12 @@
 class Item{
 
-  int id;
-  String nome;
-  String descrizione;
-  String urlimmagine;
-  int quantita;
-  int tipoProdotto;
-  double prezzo;
+  int? id;
+  String? nome;
+  String? descrizione;
+  String? urlimmagine;
+  int? quantita;
+  int? tipoProdotto;
+  double? prezzo;
 
   Item({
     required this.id,
