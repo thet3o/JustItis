@@ -8,7 +8,6 @@ class NetworkService{
   //Get available ingredients from backend
   static Future<List<Item>> getIngredients() async{
     final response = await http.get(Uri.http('5.172.80.0:2004','/public/ingredients'));
-    //final response = await http.get(Uri.https('5.172.80.0:2004','/public/ingredients'));
     if(response.statusCode == 200){
       final json = jsonDecode(response.body) as List<dynamic>;
       return json.map((e) => Item.fromJson(e as Map<String,dynamic>)).toList();
@@ -16,17 +15,27 @@ class NetworkService{
     return [];
   }
 
+  /*
+   * "Login" user, only to verify if is already in user table or not,
+   * if second option the backend add the user to db because they is already verified by Google OAuth
+  */
   static Future<double> getUserWallet(String token) async{
     final response = await http.get(
       Uri.http('5.172.80.0:2004','/public/login'),
       headers: {
-        'Content-Type': 'application/json',
-        'Authorization' : 'Bearer $token'
+        'token' : token,
       }
     );
     if(response.statusCode == 200) {return double.parse(response.body);}
     return 0.0;
-    //final response = await http.get(Uri.https('5.172.80.0:2004','/public/ingredients'));
   }
+
+  static Future<void> createOrder(String token) async{
+    // TODO create order function that return if order is created successfully 
+  }
+
+  static Future<void> getOrderStatus(String token) async{
+    // TODO get order status function that return order status
+  } 
 
 }

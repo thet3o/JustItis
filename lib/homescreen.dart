@@ -17,7 +17,10 @@ class HomeScreenState extends State<HomeScreen>{
   String status = 'Fai il login!';
 
   void getWallet() async{
-    saldo = await NetworkService.getUserWallet(GoogleOAuth.authentication.accessToken!);
+    final saldoDB = await NetworkService.getUserWallet(GoogleOAuth.authentication.accessToken!);
+    setState(() {
+      saldo = saldoDB;
+    });
   }
 
   @override
@@ -27,9 +30,9 @@ class HomeScreenState extends State<HomeScreen>{
       GoogleOAuth.currentUser = account;
       if(GoogleOAuth.currentUser != null){
         GoogleOAuth.authentication = await GoogleOAuth.currentUser!.authentication;
+        getWallet();
         setState(() {
           GoogleOAuth.isLogged = true;
-          getWallet();
         });
       }
     });

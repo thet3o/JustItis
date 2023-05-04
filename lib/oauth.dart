@@ -9,5 +9,4 @@ class GoogleOAuth{
   static GoogleSignInAccount? currentUser;
   static late GoogleSignInAuthentication authentication;
   static bool isLogged = false;
-
 }

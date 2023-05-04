@@ -1,6 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:justitis/models.dart';
 
 class CustomizerScreen extends StatefulWidget{
+  const CustomizerScreen({
+    super.key,
+    required this.customizerList,
+  });
+
+  final List<Item> customizerList;
+
   @override
   CustomizerScreenState createState() => CustomizerScreenState();
 }
