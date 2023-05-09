@@ -23,7 +23,7 @@ class NetworkService{
     final response = await http.get(
       Uri.https('backend.justitis.it:2004','/public/login'),
       headers: {
-        'token' : token,
+        'Authorization' : 'Bearer $token',
       }
     );
     if(response.statusCode == 200) {return double.parse(response.body);}
