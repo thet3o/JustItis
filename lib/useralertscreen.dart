@@ -29,7 +29,7 @@ class UserAlertScreenState extends State<UserAlertScreen>{
                       border: Border.all(color: Colors.white, width: 10),
                       borderRadius: const BorderRadius.all(Radius.circular(20))
                     ),
-                    child: const Center(
+                    child: Center(
                       child: DefaultTextStyle(
                         style: TextStyle(
                           fontSize: 30,
