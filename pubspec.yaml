@@ -19,7 +19,6 @@ dependencies:
   http: ^0.13.6
   pwa_install: ^0.0.5
   scroll_snap_list: ^0.9.1
-  fluttertoast: ^8.2.1
   flutter_slidable: ^3.0.0
 
 dev_dependencies:

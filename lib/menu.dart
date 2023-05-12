@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:justitis/cartsheet.dart';
 import 'package:justitis/customizer.dart';
 import 'package:justitis/models.dart';
@@ -33,6 +32,7 @@ class MenuScreenState extends State<MenuScreen>{
   
   @override
   void initState(){
+    Cart.storedCartItems = [];
     getIngredients();
     super.initState();
   }
@@ -89,6 +89,7 @@ class MenuScreenState extends State<MenuScreen>{
                               itemsInCart = Cart.storedCartItems.length;
                             }));
                           },
+                          trailing: Text('€${paniniFocaccie[index].prezzo!.toString()}'),
                         ),
                       );
                     },
@@ -121,6 +122,7 @@ class MenuScreenState extends State<MenuScreen>{
                               itemsInCart = Cart.storedCartItems.length;
                             });
                           },
+                          trailing: Text('€${snacks[index].prezzo!.toString()}'),
                         ),
                       );
                     },
@@ -153,7 +155,7 @@ class MenuScreenState extends State<MenuScreen>{
                               itemsInCart = Cart.storedCartItems.length;
                             });
                           },
-                          trailing: Text(drinks[index].prezzo!.toString()),
+                          trailing: Text('€${drinks[index].prezzo!.toString()}'),
                         ),
                       );
                     },

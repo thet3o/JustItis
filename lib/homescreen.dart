@@ -7,6 +7,8 @@ import 'package:justitis/oauth.dart';
 import 'package:justitis/walletscreen.dart';
 
 class HomeScreen extends StatefulWidget{
+  const HomeScreen({super.key});
+
   @override
   HomeScreenState createState() => HomeScreenState();
 }
@@ -107,7 +109,7 @@ class HomeScreenState extends State<HomeScreen>{
                 onTap: () {
                   advancedDrawerController.hideDrawer();
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => WalletScreen())
+                    MaterialPageRoute(builder: (context) => const WalletScreen())
                   );
                 },
                 leading: const Icon(Icons.wallet),
@@ -118,7 +120,7 @@ class HomeScreenState extends State<HomeScreen>{
                 onTap: () {
                   advancedDrawerController.hideDrawer();
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => MenuScreen())
+                    MaterialPageRoute(builder: (context) => const MenuScreen())
                   );
                 },
                 leading: const Icon(Icons.restaurant_menu),
@@ -172,7 +174,7 @@ class HomeScreenState extends State<HomeScreen>{
                     if(!GoogleOAuth.isLogged){
                       advancedDrawerController.showDrawer();
                     }else{
-                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => MenuScreen()));
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => const MenuScreen()));
                     }
                   }, 
                   child: Text(status, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white70),)

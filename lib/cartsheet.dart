@@ -44,13 +44,30 @@ class CartSheetState extends State<CartSheet>{
                   child: ListTile(
                     title: Text(Cart.storedCartItems[index].group[0].item.nome!),
                     subtitle: Text(subtitleGenerator(Cart.storedCartItems[index].group)),
+                    trailing: Text('€${totalItemCost(Cart.storedCartItems[index].group).toString()}'),
                   ),
                 )
               );
             },
           ),
         ),
-        ElevatedButton(onPressed: (){}, child: (Cart.storedCartItems.isNotEmpty) ? const Text('Ordina'): const Text('Cart vuoto'))
+        Container(
+          margin: const EdgeInsets.all(10),
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              fixedSize: const Size(150, 50),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
+            ),
+            onPressed: (){}, 
+            child: DefaultTextStyle(
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 15
+              ),
+              child: (Cart.storedCartItems.isNotEmpty) ? const Text('Ordina') : const Text('Cart Vuoto'),
+            )
+          ),
+        )
       ],
     );
   }
@@ -61,5 +78,13 @@ class CartSheetState extends State<CartSheet>{
       sub += '${list[i].item.nome!} ';
     }
     return sub;
+  }
+
+  double totalItemCost(List<CartItemGroupElement> list){
+    double totalCost = 0.0;
+    for(int i = 0; i < list.length; i++){
+      totalCost += list[i].item.prezzo!;
+    }
+    return totalCost;
   }
 }

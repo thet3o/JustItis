@@ -29,16 +29,16 @@ class UserAlertScreenState extends State<UserAlertScreen>{
                       border: Border.all(color: Colors.white, width: 10),
                       borderRadius: const BorderRadius.all(Radius.circular(20))
                     ),
-                    child: Center(
+                    child: const Center(
                       child: DefaultTextStyle(
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontSize: 30,
                           fontWeight: FontWeight.bold,
                           color: Colors.white70
                         ),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
+                          children: [
                             Icon(Icons.warning_amber_rounded, color: Colors.amberAccent, size: 100,),
                             Text('Dispositivo attualmente non supportato'),
                             Text('In arrivo con prossimi updates', style: TextStyle(fontSize: 15),),
