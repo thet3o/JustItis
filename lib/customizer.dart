@@ -4,18 +4,28 @@ import 'package:justitis/models.dart';
 class CustomizerSheet extends StatefulWidget{
   const CustomizerSheet({
     super.key,
+    required this.context,
     required this.customizerList,
     required this.baseItem,
   });
 
   final List<Item> customizerList;
   final Item baseItem;
+  final BuildContext context;
 
   @override
   CustomizerSheetState createState() => CustomizerSheetState();
 }
 
 class CustomizerSheetState extends State<CustomizerSheet>{
+
+  @override
+  void initState() {
+    for(int i = 0; i < widget.customizerList.length; i++){
+      widget.customizerList[i].selected = false;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(Object context) {
@@ -49,7 +59,13 @@ class CustomizerSheetState extends State<CustomizerSheet>{
               );
             },
           ),
-        )
+        ),
+        IconButton(onPressed: () {
+          final items = customizations.where((element) => element.selected).toList();
+          items.insert(0, widget.baseItem);
+          Cart.addCartItem(items);
+          Navigator.of(widget.context).pop();
+        }, icon: const Icon(Icons.add_shopping_cart))
       ],
     );
   }
