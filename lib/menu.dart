@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:justitis/customizer.dart';
 import 'package:justitis/models.dart';
 import 'package:justitis/networkservice.dart';
 
@@ -12,6 +13,7 @@ class MenuScreen extends StatefulWidget{
 class MenuScreenState extends State<MenuScreen>{
 
   List<Item> paniniFocaccie = [];
+  List<Item> addonPaniniFocaccie = [];
   List<Item> snacks = [];
   List<Item> drinks = [];
 
@@ -21,6 +23,7 @@ class MenuScreenState extends State<MenuScreen>{
       paniniFocaccie = data.where((element) => element.tipoProdotto == 1).toList();
       snacks = data.where((element) => element.tipoProdotto == 4).toList();
       drinks = data.where((element) => element.tipoProdotto == 5).toList();
+      addonPaniniFocaccie = data.where((element) => element.tipoProdotto == 2).toList();
     });
   }
   
@@ -64,7 +67,12 @@ class MenuScreenState extends State<MenuScreen>{
                       return Card(
                         child: ListTile(
                           title: Text(paniniFocaccie[index].nome!),
-                          onTap: () {},
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              builder: (context) => CustomizerSheet(customizerList: addonPaniniFocaccie, baseItem: paniniFocaccie[index],)
+                            );
+                          },
                         ),
                       );
                     },

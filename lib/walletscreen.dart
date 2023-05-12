@@ -2,6 +2,8 @@ import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
 
 class WalletScreen extends StatefulWidget{
+  const WalletScreen({super.key});
+
   @override
   WalletScreenState createState() => WalletScreenState();
 }
@@ -21,7 +23,7 @@ class WalletScreenState extends State<WalletScreen>{
           Navigator.of(context).pop();
         },)),
       body: ColoredBox(
-        color: Color.fromARGB(122, 255, 168, 47),
+        color: const Color.fromARGB(122, 255, 168, 47),
         child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

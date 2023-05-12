@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class UserAlertScreen extends StatefulWidget{
+  const UserAlertScreen({super.key});
+
   @override
   UserAlertScreenState createState() => UserAlertScreenState();
 }

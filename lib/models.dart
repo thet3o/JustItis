@@ -7,6 +7,7 @@ class Item{
   int? quantita;
   int? tipoProdotto;
   double? prezzo;
+  bool selected;
 
   Item({
     required this.id,
@@ -15,7 +16,8 @@ class Item{
     required this.urlimmagine,
     required this.quantita,
     required this.tipoProdotto,
-    required this.prezzo
+    required this.prezzo,
+    this.selected = false
   });
 
   Item.fromJson(Map<String,dynamic> json)
@@ -25,5 +27,6 @@ class Item{
       urlimmagine = json['urlimmagine'],
       quantita = json['quantità'],
       tipoProdotto = json['tipo_prodotto'],
-      prezzo = json['prezzo'];
+      prezzo = json['prezzo'],
+      selected = false;
 }
