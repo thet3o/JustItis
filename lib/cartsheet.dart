@@ -49,7 +49,8 @@ class CartSheetState extends State<CartSheet>{
               );
             },
           ),
-        )
+        ),
+        ElevatedButton(onPressed: (){}, child: (Cart.storedCartItems.isNotEmpty) ? const Text('Ordina'): const Text('Cart vuoto'))
       ],
     );
   }
