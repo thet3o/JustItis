@@ -46,3 +46,9 @@ jobs:
           firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_JUSTITIS_B275E}}"
           channelId: live
           projectId: justitis-b275e
+      - name: 🔥 Deploy to cloudflare
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          command: pages publish --project-name=justitis build/web
