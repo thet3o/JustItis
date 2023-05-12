@@ -148,11 +148,12 @@ class MenuScreenState extends State<MenuScreen>{
                         child: ListTile(
                           title: Text(drinks[index].nome!),
                           onTap: () {
-                            Cart.addCartItem([snacks[index]]);
+                            Cart.addCartItem([drinks[index]]);
                             setState(() {
                               itemsInCart = Cart.storedCartItems.length;
                             });
                           },
+                          trailing: Text(drinks[index].prezzo!.toString()),
                         ),
                       );
                     },
