@@ -20,6 +20,7 @@ dependencies:
   pwa_install: ^0.0.5
   scroll_snap_list: ^0.9.1
   flutter_slidable: ^3.0.0
+  web_browser_detect: ^2.0.3
 
 dev_dependencies:
   flutter_test:

@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
     return MaterialApp(
-      home: checkIfMobile() ? const HomeScreen() : const UserAlertScreen(),
+      home: checkIfMobile(context) ? const HomeScreen() : const UserAlertScreen(),
     );
   }
 }
