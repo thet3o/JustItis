@@ -12,7 +12,7 @@ jobs:
       - name: 🐦 Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          channel: "master"
+          channel: "stable"
           flutter-version: 3.10.0
       - name: 📦 Install Dependencies
         run: |
@@ -20,7 +20,7 @@ jobs:
           very_good --analytics false
           very_good packages get --recursive
       - name: 🛠️ Build the application
-        run: flutter build web --wasm
+        run: flutter build web
       - name: ⬇️ Archive Production Artifact
         uses: actions/upload-artifact@master
         with:
