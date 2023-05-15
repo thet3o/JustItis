@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:justitis/models.dart';
+import 'package:justitis/networkservice.dart';
+import 'package:justitis/oauth.dart';
 
 class CartSheet extends StatefulWidget{
   const CartSheet({super.key});
@@ -58,7 +60,11 @@ class CartSheetState extends State<CartSheet>{
               fixedSize: const Size(150, 50),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
             ),
-            onPressed: (){}, 
+            onPressed: (){
+              if (Cart.storedCartItems.isNotEmpty){
+                NetworkService.createOrder(GoogleOAuth.authentication.accessToken!, Cart.toJson());
+              }
+            }, 
             child: DefaultTextStyle(
               style: const TextStyle(
                 fontWeight: FontWeight.bold,

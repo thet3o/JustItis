@@ -30,8 +30,14 @@ class NetworkService{
     return 0.0;
   }
 
-  static Future<void> createOrder(String token) async{
-    // TODO create order function that return if order is created successfully 
+  static Future<void> createOrder(String token, String jsonCart) async{
+    final response = await http.post(
+      Uri.https('backend.justitis.it:2004','/public/order/create'),
+      headers: {
+        'Authorization' : 'Bearer $token',
+      },
+      body: jsonCart
+    );
   }
 
   static Future<void> getOrderStatus(String token) async{
