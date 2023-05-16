@@ -62,7 +62,7 @@ class CartSheetState extends State<CartSheet>{
             ),
             onPressed: (){
               if (Cart.storedCartItems.isNotEmpty){
-                NetworkService.createOrder(GoogleOAuth.authentication.accessToken!, Cart.toJson());
+                NetworkService.createOrder(GoogleOAuth.authentication.accessToken!);
               }
             }, 
             child: DefaultTextStyle(
