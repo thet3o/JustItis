@@ -90,4 +90,13 @@ class Cart{
   }
 
   static String toJson() => jsonEncode(storedCartItems);
+  static String toJsonOrder() {
+    final List<CartItemGroupElement> totalOrder = [];
+    for (var cartEl in storedCartItems) {
+      for (var groupEl in cartEl.group) {
+        totalOrder.add(groupEl);
+      }
+    }
+    return jsonEncode(totalOrder);
+  }
 }

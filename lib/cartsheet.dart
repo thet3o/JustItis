@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:justitis/models.dart';
@@ -65,6 +67,7 @@ class CartSheetState extends State<CartSheet>{
             ),
             onPressed: (){
               if (Cart.storedCartItems.isNotEmpty){
+                print(Cart.toJsonOrder());
                 NetworkService.createOrder(GoogleOAuth.authentication.accessToken!);
               }
             }, 

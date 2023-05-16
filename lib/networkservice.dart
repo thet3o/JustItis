@@ -31,7 +31,7 @@ class NetworkService{
   }
 
   static Future<void> createOrder(String token) async{
-    final response = await http.post(
+    await http.post(
       Uri.https('backend.justitis.it:2004','/api/order/create'),
       headers: {
         'Authorization' : 'Bearer $token',
@@ -41,7 +41,6 @@ class NetworkService{
         'order': Cart.toJson()
       })
     );
-    print(response.statusCode);
   }
 
   static Future<void> getOrderStatus(String token) async{
