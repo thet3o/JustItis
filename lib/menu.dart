@@ -54,7 +54,7 @@ class MenuScreenState extends State<MenuScreen>{
             child: Center(child: IconButton(onPressed: (){
               showModalBottomSheet(
                 context: context, 
-                builder: (context) => const CartSheet()
+                builder: (context) => CartSheet(context: context,)
               ).whenComplete(() => setState((){itemsInCart = Cart.storedCartItems.length;}));
             }, icon: const Icon(Icons.shopping_cart)),),
           )

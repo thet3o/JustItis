@@ -7,7 +7,12 @@ import 'package:justitis/networkservice.dart';
 import 'package:justitis/oauth.dart';
 import 'package:intl/intl.dart';
 class CartSheet extends StatefulWidget{
-  const CartSheet({super.key});
+  const CartSheet({
+    super.key,
+    required this.context,
+  });
+
+  final BuildContext context;
 
   @override
   CartSheetState createState() => CartSheetState();
@@ -65,10 +70,11 @@ class CartSheetState extends State<CartSheet>{
               fixedSize: const Size(150, 50),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
             ),
-            onPressed: (){
+            onPressed: ()async{
               if (Cart.storedCartItems.isNotEmpty){
-                print(Cart.toJsonOrder());
-                NetworkService.createOrder(GoogleOAuth.authentication.accessToken!);
+                if(await NetworkService.createOrder(GoogleOAuth.authentication.accessToken!)){
+                  if(context.mounted) Navigator.of(widget.context).pop();
+                }
               }
             }, 
             child: DefaultTextStyle(
