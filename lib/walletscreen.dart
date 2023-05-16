@@ -1,5 +1,6 @@
 import 'package:barcode_widget/barcode_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class WalletScreen extends StatefulWidget{
   const WalletScreen({super.key});
@@ -9,6 +10,7 @@ class WalletScreen extends StatefulWidget{
 }
 
 class WalletScreenState extends State<WalletScreen>{
+  final currency = NumberFormat('##0.0#', 'it_IT');
   double saldo = 0.00;
 
   @override
@@ -30,7 +32,7 @@ class WalletScreenState extends State<WalletScreen>{
           children: [
             DefaultTextStyle(
               style: const TextStyle(fontSize: 40, color: Colors.black54),
-              child: Text('Saldo: € $saldo'),
+              child: Text('Saldo: € ${currency.format(saldo)}'),
             ),
             const SizedBox(height: 10,),
             Row(
