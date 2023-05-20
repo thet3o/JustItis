@@ -6,6 +6,14 @@ class GoogleOAuth{
     scopes: ['email', 'profile', 'openid']
   );
 
+  static void loginSilent() async{
+    await googleSignIn.signInSilently(suppressErrors: false);
+  }
+
+  static void login(){
+    googleSignIn.signIn();
+  }
+
   static GoogleSignInAccount? currentUser;
   static late GoogleSignInAuthentication authentication;
   static bool isLogged = false;

@@ -7,7 +7,7 @@ class NetworkService{
 
   //Get available ingredients from backend
   static Future<List<Item>> getIngredients() async{
-    final response = await http.get(Uri.https('backend.justitis.it:2004','/ingredients'));
+    final response = await http.get(Uri.https('backend.justitis.it:2053','/ingredients'));
     if(response.statusCode == 200){
       final json = jsonDecode(response.body) as List<dynamic>;
       return json.map((e) => Item.fromJson(e as Map<String,dynamic>)).toList();
@@ -21,7 +21,7 @@ class NetworkService{
   */
   static Future<double> getUserWallet(String token) async{
     final response = await http.get(
-      Uri.https('backend.justitis.it:2004','/login'),
+      Uri.https('backend.justitis.it:2053','/login'),
       headers: {
         'Authorization' : 'Bearer $token',
       }
@@ -32,7 +32,7 @@ class NetworkService{
 
   static Future<bool> createOrder(String token) async{
     final response = await http.post(
-      Uri.https('backend.justitis.it:2004','/api/order/create'),
+      Uri.https('backend.justitis.it:2053','/api/order/create'),
       headers: {
         'Authorization' : 'Bearer $token',
         'Content-Type': 'application/json; charset=UTF-8',

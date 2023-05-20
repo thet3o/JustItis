@@ -1,11 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:justitis/models.dart';
 import 'package:justitis/networkservice.dart';
 import 'package:justitis/oauth.dart';
 import 'package:intl/intl.dart';
+
 class CartSheet extends StatefulWidget{
   const CartSheet({
     super.key,
@@ -20,7 +19,7 @@ class CartSheet extends StatefulWidget{
 
 class CartSheetState extends State<CartSheet>{
 
-  final currency = NumberFormat('###.0#', 'it_IT');
+  final currency = NumberFormat('##0.0#', 'it_IT');
 
   @override
   Widget build(BuildContext context) {
