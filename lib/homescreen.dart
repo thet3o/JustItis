@@ -30,7 +30,6 @@ class HomeScreenState extends State<HomeScreen>{
     super.initState();
     GoogleOAuth.googleSignIn.onCurrentUserChanged.listen((GoogleSignInAccount? account) async{
       GoogleOAuth.currentUser = account;
-      GoogleOAuth.authentication.
       if(GoogleOAuth.currentUser != null){
         GoogleOAuth.authentication = await GoogleOAuth.currentUser!.authentication;
         getWallet();
