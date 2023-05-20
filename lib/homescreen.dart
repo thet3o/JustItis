@@ -38,9 +38,6 @@ class HomeScreenState extends State<HomeScreen>{
         });
       }
     });
-    try{
-      GoogleOAuth.loginSilent();
-    }catch(e){}
   }
 
   @override
