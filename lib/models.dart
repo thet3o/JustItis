@@ -23,7 +23,7 @@ class Item{
   });
 
   Item.fromJson(Map<String,dynamic> json)
-    : id = json['id_ingrediente'],
+    : id = json['id_ingredient'],
       nome = json['nome'],
       descrizione = json['descrizione'],
       urlimmagine = json['urlimmagine'],
@@ -97,6 +97,7 @@ class Cart{
         totalOrder.add(groupEl);
       }
     }
+    print(jsonEncode(totalOrder));
     return jsonEncode(totalOrder);
   }
 }
