@@ -39,12 +39,25 @@ class NetworkService{
       },
       body: Cart.toJsonOrder()
     );
-    if(response.statusCode == 200){return true;}
+    if(response.statusCode == 200){
+      print(response.body);
+      return true;
+    }
     return false;
   }
 
-  static Future<void> getOrderStatus(String token) async{
-    // TODO get order status function that return order status
+  static Future<List<Order>> getUserOrders(String token) async{
+    final response = await http.get(
+      Uri.https('backend.justitis.it:2053','/api/order'),
+      headers: {
+        'Authorization' : 'Bearer $token',
+      }
+    );
+    if(response.statusCode == 200){
+      final order = Order.fromJson(jsonDecode(response.body));
+      return [order];
+    }
+    return [];
   } 
 
 }

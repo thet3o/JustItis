@@ -22,6 +22,10 @@ dependencies:
   flutter_slidable: ^3.0.0
   web_browser_detect: ^2.0.3
   intl: ^0.18.1
+  firebase_core: ^2.13.0
+  firebase_messaging: ^14.6.1
+  flutter_local_notifications: ^14.1.0
+  font_awesome_flutter: ^10.4.0
 
 dev_dependencies:
   flutter_test:

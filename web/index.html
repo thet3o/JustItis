@@ -1,4 +1,7 @@
-<!DOCTYPE html><html><head>
+<!DOCTYPE html>
+<html>
+
+<head>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -17,7 +20,8 @@
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
   <meta name="description" content="A new Flutter project.">
-  <meta name="google-signin-client_id" content="218796606716-j8ocieekuju6cp77dm7ona0l7captkgf.apps.googleusercontent.com">
+  <meta name="google-signin-client_id"
+    content="218796606716-j8ocieekuju6cp77dm7ona0l7captkgf.apps.googleusercontent.com">
   <meta name="Access-Control-Allow-Headers" value="Content-Type, Authorization, token" />
 
   <!-- iOS meta tags & icons -->
@@ -36,7 +40,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z4SS1F2S4F"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'G-Z4SS1F2S4F');
@@ -52,20 +56,26 @@
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   <script src="splash/splash.js"></script>
 </head>
-<body>  <picture id="splash">
-      <source srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x" media="(prefers-color-scheme: light)">
-      <source srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x" media="(prefers-color-scheme: dark)">
-      <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
-  </picture>    
+
+<body>
+  <picture id="splash">
+    <source
+      srcset="splash/img/light-1x.png 1x, splash/img/light-2x.png 2x, splash/img/light-3x.png 3x, splash/img/light-4x.png 4x"
+      media="(prefers-color-scheme: light)">
+    <source
+      srcset="splash/img/dark-1x.png 1x, splash/img/dark-2x.png 2x, splash/img/dark-3x.png 3x, splash/img/dark-4x.png 4x"
+      media="(prefers-color-scheme: dark)">
+    <img class="center" aria-hidden="true" src="splash/img/light-1x.png" alt="">
+  </picture>
   <script>
-    window.addEventListener('load', function(ev) {
+    window.addEventListener('load', function (ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
           serviceWorkerVersion: serviceWorkerVersion,
         },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
+        onEntrypointLoaded: function (engineInitializer) {
+          engineInitializer.initializeEngine().then(function (appRunner) {
             appRunner.runApp();
           });
         }
@@ -80,8 +90,8 @@
       deferredPrompt = e;
     });
 
-    function promptInstall(){
-       deferredPrompt.prompt();
+    function promptInstall() {
+      deferredPrompt.prompt();
     }
 
     // Listen for app install event
@@ -93,7 +103,7 @@
     // Track how PWA was launched (either from browser or as PWA)
     function getLaunchMode() {
       const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-      if(deferredPrompt) hasPrompt();
+      if (deferredPrompt) hasPrompt();
       if (document.referrer.startsWith('android-app://')) {
         appLaunchedAsTWA();
       } else if (navigator.standalone || isStandalone) {
@@ -103,4 +113,6 @@
       }
     }
   </script>
-</body></html>
+</body>
+
+</html>

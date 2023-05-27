@@ -1,5 +1,8 @@
 import 'dart:html';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
+
 bool checkIfMobile(){
   final userAgent = window.navigator.userAgent.toString().toLowerCase();
   if(userAgent.contains('android') || userAgent.contains('iphone')){
@@ -8,9 +11,36 @@ bool checkIfMobile(){
   return false;
 }
 
-//bool checkIfMobile(context){
-//  bool isMobile = MediaQuery.of(context).size.width < 850;
-//  bool isTablet = MediaQuery.of(context).size.width < 1100 && MediaQuery.of(context).size.width >= 850;
-//  if(isMobile || isTablet){return true;}
-//  return false;
-//}
+Future<void> getPermission() async {
+  FirebaseMessaging messaging = FirebaseMessaging.instance;
+
+  NotificationSettings settings = await messaging.requestPermission(
+    alert: true,
+    announcement: false,
+    badge: true,
+    carPlay: false,
+    criticalAlert: false,
+    provisional: false,
+    sound: true
+  );
+  print('User granted permission: ${settings.authorizationStatus}');
+} 
+
+void messageListener(BuildContext context){
+  FirebaseMessaging.onMessage.listen((RemoteMessage message) {
+    if(message.notification != null){
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+
+          return SimpleDialog(
+            title: Text(message.notification!.title ?? ''),
+            titlePadding: EdgeInsets.all(10),
+            contentPadding: EdgeInsets.all(10),
+          );
+          
+        }
+      );
+    }
+  });
+}

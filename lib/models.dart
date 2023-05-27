@@ -101,3 +101,14 @@ class Cart{
     return jsonEncode(totalOrder);
   }
 }
+
+class Order{
+
+  String? orderStatus;
+  List<int> ingredients;
+
+  Order.fromJson(Map<String, dynamic> json)
+    : orderStatus = json['order_status'],
+      ingredients = json['ingredienti'].cast<int>().toList();
+
+}

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced_drawer/flutter_advanced_drawer.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:justitis/menu.dart';
+import 'package:justitis/myorderscreen.dart';
 import 'package:justitis/networkservice.dart';
 import 'package:justitis/oauth.dart';
 import 'package:justitis/walletscreen.dart';
@@ -107,25 +109,36 @@ class HomeScreenState extends State<HomeScreen>{
               ),
               if (GoogleOAuth.isLogged)
                 ListTile(
-                onTap: () {
-                  advancedDrawerController.hideDrawer();
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const WalletScreen())
-                  );
-                },
-                leading: const Icon(Icons.wallet),
-                title: const Text('Ricarica Wallet'),
+                  onTap: () {
+                    advancedDrawerController.hideDrawer();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const WalletScreen())
+                    );
+                  },
+                  leading: const Icon(Icons.wallet),
+                  title: const Text('Ricarica Wallet'),
                 ),
               if (GoogleOAuth.isLogged)
                 ListTile(
-                onTap: () {
-                  advancedDrawerController.hideDrawer();
-                  Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const MenuScreen())
-                  );
-                },
-                leading: const Icon(Icons.restaurant_menu),
-                title: const Text('Ordina'),
+                  onTap: () {
+                    advancedDrawerController.hideDrawer();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const MenuScreen())
+                    );
+                  },
+                  leading: const Icon(Icons.restaurant_menu),
+                  title: const Text('Ordina'),
+                ),
+              if(GoogleOAuth.isLogged)
+                ListTile(
+                  onTap: () {
+                    advancedDrawerController.hideDrawer();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const MyOrderScreen())
+                    );
+                  },
+                  leading: const FaIcon(FontAwesomeIcons.utensils),
+                  title: const Text('I miei ordini')
                 ),
               const Spacer(),
               DefaultTextStyle(
