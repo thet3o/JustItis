@@ -54,8 +54,8 @@ class NetworkService{
       }
     );
     if(response.statusCode == 200){
-      final order = Order.fromJson(jsonDecode(response.body));
-      return [order];
+      final json = jsonDecode(response.body) as List<dynamic>;
+      return json.map((e) => Order.fromJson(e as Map<String, dynamic>)).toList();
     }
     return [];
   } 
