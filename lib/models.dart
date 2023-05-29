@@ -106,9 +106,11 @@ class Order{
 
   String? orderStatus;
   List<dynamic> ingredients;
+  double? costoOrdine;
 
   Order.fromJson(Map<String, dynamic> json)
     : orderStatus = json['order_status'],
-      ingredients = json['ingredienti'];
+      ingredients = json['ingredienti'],
+      costoOrdine = json['costo_ordine'];
 
 }

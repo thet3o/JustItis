@@ -11,11 +11,7 @@ void main() {
 }
 
 class MainApp extends StatelessWidget {
-
-  @override
-  void initState(){
-  }
-
+  
   const MainApp({super.key});
   @override
   Widget build(BuildContext context) {

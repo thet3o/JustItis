@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:justitis/models.dart';
 import 'package:justitis/networkservice.dart';
 import 'package:justitis/oauth.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class MyOrderScreen extends StatefulWidget{
   const MyOrderScreen({super.key});
@@ -84,24 +85,37 @@ class MyOrderScreenState extends State<MyOrderScreen>{
                 return Card(
                   child: ListTile(
                     title: Text('Ordine ${orders.length-i}'),
+                    subtitle: Text('Spesa totale: €${orders[i].costoOrdine}'),
                     trailing: Text(orders[i].orderStatus!),
                     onTap: () {
-                      showDialog(context: context, builder: (context) {
-                        return AlertDialog(
-                          content: ListView.builder(
-                              itemCount: orders[i].ingredients.length,
-                              itemBuilder: (context, x) {
-                                final List<String> infos = getInfosFromIngredients(orders[i].ingredients[x]);
-                                return Card(
-                                  child: ListTile(
-                                    title: Text(infos[0]),
-                                    subtitle: (infos.length == 2)? Text(infos[1]) : null,
-                                  ),
-                                );
-                              },
+                      showModalBottomSheet(context: context, builder: (context) {
+                        return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            DefaultTextStyle(
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20
+                              ),
+                              child: Text('Dettagli Ordine ${orders.length-i}'),
                             ),
-                          );            
-                      });
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: orders[i].ingredients.length,
+                                itemBuilder: (context, x) {
+                                  final List<String> infos = getInfosFromIngredients(orders[i].ingredients[x]);
+                                  return Card(
+                                    child: ListTile(
+                                      title: Text(infos[0]),
+                                      subtitle: (infos.length == 2)? Text(infos[1]) : null,
+                                    ),
+                                  );
+                                },
+                              ),
+                            )
+                          ],
+                        );
+                      }, showDragHandle: true, enableDrag: true);
                     },
                   ),
                 );
