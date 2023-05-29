@@ -29,37 +29,38 @@ class MyOrderScreenState extends State<MyOrderScreen>{
       addonPaniniFocaccie = ingredientsData.where((element) => element.tipoProdotto == 2).toList();
     });
   }
-
-  List<dynamic> getOrderTitle(Order order){
-    String title = '';
-    for(int i = 0; i< paniniFocaccie.length; i++){
-      if(order.ingredients.contains(paniniFocaccie[i].id)){
-        title = paniniFocaccie[i].nome!;
-        order.ingredients.remove(paniniFocaccie[i].id);
-        return [title, true];
-      }
-    }
-    for(int i = 0; i< drinks.length; i++){
-      if(order.ingredients.contains(drinks[i].id)){
-        title = drinks[i].nome!;
-        order.ingredients.remove(drinks[i].id);
-        return [title, false];
-      }
-    }
-    for(int i = 0; i< snacks.length; i++){
-      if(order.ingredients.contains(snacks[i].id)){
-        title = snacks[i].nome!;
-        order.ingredients.remove(snacks[i].id);
-        return [title, false];
-      }
-    }
-    return [];
-  }
-
   @override
   void initState() {
     super.initState();
     getUserOrders();
+  }
+
+  List<String> getInfosFromIngredients(List<dynamic> subingredients){
+
+    for (var element in paniniFocaccie) {
+      String title = '';
+      List<String> addonsList = []; 
+      if(subingredients.contains(element.id)){
+        title = element.nome!;
+        for(var addon in addonPaniniFocaccie){
+          if(subingredients.contains(addon.id)){
+            addonsList.add(addon.nome!);
+          }
+        }
+        return [title, addonsList.toString().replaceAll('[', '').replaceAll(']', '')];
+      }
+    }
+    for (var element in snacks) { 
+      if(subingredients.contains(element.id)){
+        return [element.nome!];
+      }
+    }
+    for (var element in drinks) { 
+      if(subingredients.contains(element.id)){
+        return [element.nome!];
+      }
+    }
+    return [];
   }
 
   @override
@@ -79,13 +80,29 @@ class MyOrderScreenState extends State<MyOrderScreen>{
           Expanded(
             child: ListView.builder(
               itemCount: orders.length,
-              itemBuilder: (context, index) {
-                final data = getOrderTitle(orders[index]);
+              itemBuilder: (context, i) {
                 return Card(
                   child: ListTile(
-                    title: Text(data[0]),
-                    subtitle: (data[1])? const Text('other ingredients'): null,
-                    trailing: Text(orders[index].orderStatus!),
+                    title: Text('Ordine ${orders.length-i}'),
+                    trailing: Text(orders[i].orderStatus!),
+                    onTap: () {
+                      showDialog(context: context, builder: (context) {
+                        return AlertDialog(
+                          content: ListView.builder(
+                              itemCount: orders[i].ingredients.length,
+                              itemBuilder: (context, x) {
+                                final List<String> infos = getInfosFromIngredients(orders[i].ingredients[x]);
+                                return Card(
+                                  child: ListTile(
+                                    title: Text(infos[0]),
+                                    subtitle: (infos.length == 2)? Text(infos[1]) : null,
+                                  ),
+                                );
+                              },
+                            ),
+                          );            
+                      });
+                    },
                   ),
                 );
               },

@@ -105,10 +105,10 @@ class Cart{
 class Order{
 
   String? orderStatus;
-  List<int> ingredients;
+  List<dynamic> ingredients;
 
   Order.fromJson(Map<String, dynamic> json)
     : orderStatus = json['order_status'],
-      ingredients = json['ingredienti'].cast<int>().toList();
+      ingredients = json['ingredienti'];
 
 }
