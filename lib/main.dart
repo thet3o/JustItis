@@ -17,6 +17,11 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     FlutterNativeSplash.remove();
     return MaterialApp(
+      theme: ThemeData(
+        primaryTextTheme: Typography().black,
+        textTheme: Typography().black
+      ),
+      color: Colors.amber[700],
       home: checkIfMobile() ? const HomeScreen() : const UserAlertScreen(),
     );
   }
