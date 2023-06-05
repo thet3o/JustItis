@@ -42,7 +42,7 @@ class MenuScreenState extends State<MenuScreen>{
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Ordina'),
+        title: const Text('Ordina', style: TextStyle(color: Colors.black),),
         leading: IconButton(icon: const Icon(Icons.arrow_back), onPressed: () {
           Navigator.pop(context);
         },),
@@ -69,7 +69,7 @@ class MenuScreenState extends State<MenuScreen>{
             child: Column(
               children: [
                 const DefaultTextStyle(
-                  style: TextStyle(fontSize: 20,),
+                  style: TextStyle(fontSize: 20, color: Colors.black),
                   textAlign: TextAlign.center,
                   child: Text('Panini & Focacce'),
                   ),
@@ -106,7 +106,7 @@ class MenuScreenState extends State<MenuScreen>{
                 const DefaultTextStyle(
                   style: TextStyle(fontSize: 20,),
                   textAlign: TextAlign.center,
-                  child: Text('Snacks'),
+                  child: Text('Snacks', style: TextStyle(color: Colors.black),),
                   ),
                 Expanded(
                   child: ListView.builder(
@@ -139,7 +139,7 @@ class MenuScreenState extends State<MenuScreen>{
                 const DefaultTextStyle(
                   style: TextStyle(fontSize: 20,),
                   textAlign: TextAlign.center,
-                  child: Text('Drinks'),
+                  child: Text('Drinks', style: TextStyle(color: Colors.black),),
                   ),
                 Expanded(
                   child: ListView.builder(

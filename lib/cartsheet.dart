@@ -32,7 +32,7 @@ class CartSheetState extends State<CartSheet>{
             fontWeight: FontWeight.bold,
             fontSize: 25,
           ),
-          child: Text('Cart'),
+          child: Text('Cart', style: TextStyle(color: Colors.black),),
         ),
         Expanded(
           child: ListView.builder(
@@ -97,7 +97,7 @@ class CartSheetState extends State<CartSheet>{
                           });
                           if(context.mounted) Navigator.of(widget.context).pop();
                         }
-                      }, child: const Text('Ordina'))
+                      }, child: const Text('Ordina', style: TextStyle(color: Colors.black),))
                     ],
                   );
                 })).then((_){if(context.mounted && !isCancelled) Navigator.of(widget.context).pop();});
@@ -108,7 +108,7 @@ class CartSheetState extends State<CartSheet>{
                 fontWeight: FontWeight.bold,
                 fontSize: 15
               ),
-              child: (Cart.storedCartItems.isNotEmpty) ? const Text('Ordina') : const Text('Cart Vuoto'),
+              child: (Cart.storedCartItems.isNotEmpty) ? const Text('Ordina', style: TextStyle(color: Colors.black),) : const Text('Cart Vuoto', style: TextStyle(color: Colors.black),),
             )
           ),
         )
