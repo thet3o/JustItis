@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:justitis/models.dart';
 import 'package:justitis/networkservice.dart';
 import 'package:justitis/oauth.dart';
@@ -69,11 +70,37 @@ class CartSheetState extends State<CartSheet>{
               fixedSize: const Size(150, 50),
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0))
             ),
-            onPressed: ()async{
+            onPressed: (){
               if (Cart.storedCartItems.isNotEmpty){
-                if(await NetworkService.createOrder(GoogleOAuth.authentication.accessToken!)){
-                  if(context.mounted) Navigator.of(widget.context).pop();
-                }
+                bool isCancelled = false;
+                showDialog(context: context, builder: ((context) {
+                  return AlertDialog(
+                    title: const Text("Vuoi confermare l'ordine?"),
+                    actions: [
+                      TextButton(onPressed: (){
+                        isCancelled = true;
+                        if(context.mounted) Navigator.of(widget.context).pop();
+                      }, child: const Text('Annulla')),
+                      TextButton(onPressed: () async{
+                        if(await NetworkService.createOrder(GoogleOAuth.authentication.accessToken!)){
+                          Fluttertoast.showToast(
+                            msg: 'Hai ordinato con successo!',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            webPosition: 'center',
+                            webBgColor: '#bcbcbc',
+                            backgroundColor: const Color.fromARGB(255, 130, 130, 130)
+                          );
+                          setState(() {
+                            Cart.storedCartItems.clear();
+                          });
+                          if(context.mounted) Navigator.of(widget.context).pop();
+                        }
+                      }, child: const Text('Ordina'))
+                    ],
+                  );
+                })).then((_){if(context.mounted && !isCancelled) Navigator.of(widget.context).pop();});
               }
             }, 
             child: DefaultTextStyle(

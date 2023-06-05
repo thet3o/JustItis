@@ -26,6 +26,7 @@ dependencies:
   firebase_messaging: ^14.6.1
   flutter_local_notifications: ^14.1.0
   font_awesome_flutter: ^10.4.0
+  fluttertoast: ^8.2.2
 
 dev_dependencies:
   flutter_test:
