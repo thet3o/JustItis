@@ -15,7 +15,8 @@ class MenuScreen extends StatefulWidget{
 class MenuScreenState extends State<MenuScreen>{
 
   List<Item> paniniFocaccie = [];
-  List<Item> addonPaniniFocaccie = [];
+  List<Item> salumi = [];
+  List<Item> addonPanini = [];
   List<Item> snacks = [];
   List<Item> drinks = [];
   int itemsInCart = 0;
@@ -23,10 +24,11 @@ class MenuScreenState extends State<MenuScreen>{
   void getIngredients() async{
     final data = await NetworkService.getIngredients();
     setState((){
-      paniniFocaccie = data.where((element) => element.tipoProdotto == 1).toList();
+      paniniFocaccie = data.where((element) => element.tipoProdotto == 1 || element.tipoProdotto == 7).toList();
       snacks = data.where((element) => element.tipoProdotto == 4).toList();
       drinks = data.where((element) => element.tipoProdotto == 5).toList();
-      addonPaniniFocaccie = data.where((element) => element.tipoProdotto == 2).toList();
+      salumi = data.where((element) => element.tipoProdotto == 2).toList();
+      addonPanini = data.where((element) => element.tipoProdotto == 3).toList();
     });
   }
   
@@ -82,12 +84,29 @@ class MenuScreenState extends State<MenuScreen>{
                         child: ListTile(
                           title: Text(paniniFocaccie[index].nome!),
                           onTap: () {
-                            showModalBottomSheet(
-                              context: context,
-                              builder: (context) => CustomizerSheet(context: context, customizerList: addonPaniniFocaccie, baseItem: paniniFocaccie[index],)
-                            ).whenComplete(() => setState((){
-                              itemsInCart = Cart.storedCartItems.length;
-                            }));
+                            final List<Item> order = [];
+                            if (paniniFocaccie[index].tipoProdotto == 1){
+                              showModalBottomSheet(
+                                context: context,
+                                builder: (context) => CustomizerSheet(context: context, customizerList: salumi, baseItem: paniniFocaccie[index], oneSelect: true, order: order,)
+                              ).whenComplete(() {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => CustomizerSheet(context: context, customizerList: addonPanini, baseItem: paniniFocaccie[index], oneSelect: false, order: order)
+                                ).whenComplete(() {
+                                  order.insert(0, paniniFocaccie[index]);
+                                  Cart.addCartItem(order);
+                                  setState((){
+                                    itemsInCart = Cart.storedCartItems.length;
+                                  });
+                                });
+                              });
+                            }else{
+                              Cart.addCartItem([paniniFocaccie[index]]);
+                              setState(() {
+                                itemsInCart = Cart.storedCartItems.length;
+                              });
+                            }
                           },
                           trailing: Text('€${paniniFocaccie[index].prezzo!.toString()}'),
                         ),

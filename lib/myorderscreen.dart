@@ -27,7 +27,7 @@ class MyOrderScreenState extends State<MyOrderScreen>{
       paniniFocaccie = ingredientsData.where((element) => element.tipoProdotto == 1).toList();
       snacks = ingredientsData.where((element) => element.tipoProdotto == 4).toList();
       drinks = ingredientsData.where((element) => element.tipoProdotto == 5).toList();
-      addonPaniniFocaccie = ingredientsData.where((element) => element.tipoProdotto == 2).toList();
+      addonPaniniFocaccie = ingredientsData.where((element) => element.tipoProdotto == 2 || element.tipoProdotto == 3).toList();
     });
   }
   @override
